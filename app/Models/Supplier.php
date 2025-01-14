@@ -39,4 +39,8 @@ class Supplier extends Model
     {
         return $this->hasMany(SupplierReview::class);
     }
+    public function tarifario()
+    {
+        return $this->hasMany(Tarifario::class);
+    }
 }
