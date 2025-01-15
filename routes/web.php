@@ -6,6 +6,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\BusinessDirectoryController;
 use App\Http\Controllers\serviceController;
 use App\Http\Controllers\ExchangeRateController;
+use App\Livewire\BusinessDirectory;
 
 // Ruta para la página de inicio
 // Route::get('/', function () { //maneja las solicitudes a la raíz de tu aplicación. Aquí se define que, al acceder al dominio principal, se mostrará la vista de login.
@@ -23,12 +24,12 @@ Route::middleware([
     Route::get('/', function () {
         return view('/dashboard');
     })->name('dashboard');
-    
+
     Route::get('/dashboard', function () {
         return view('/dashboard');
     })->name('dashboard.page');
-    
-    
+
+
     // Ruta para reports
     Route::get('/reports', function () {
         return "reports";//view('dashboard');
@@ -38,7 +39,7 @@ Route::middleware([
     // Route::get('/catalog', function () {
     //     return view('catalog.index');
     // })->name('catalog');
-    
+
     // // Ruta para directory
     // Route::get('/directory', function () {
     //     return view('dashboard');
@@ -78,6 +79,6 @@ Route::middleware([
 
     // Ruta para guardar el contacto
     Route::post('/business-directory/{id}/contacts/store', [BusinessDirectoryController::class, 'storeContact'])->name('business-directory.contacts.store');
-    
-    
+    Route::get('/business-directory/create2', App\Livewire\BusinessDirectory\CreateBusinessDirectory::class)->name('business-directory.create2');
+
 });

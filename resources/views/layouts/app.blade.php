@@ -12,6 +12,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Styles -->
+    @filamentStyles
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
@@ -20,10 +21,10 @@
         <!-- Main content -->
         <main class="flex-1">
             @livewire('navigation-menu')
-           
+
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-4 py-6 mx-auto sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -34,6 +35,7 @@
             </div>
         </main>
     </div>
+    @filamentScripts
     @livewireScripts
 </body>
 </html>

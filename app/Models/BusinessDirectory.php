@@ -11,29 +11,29 @@ class BusinessDirectory extends Model
     protected $table = 'business_directories';
 
     protected $fillable = [
-        'type', 
-        'company', 
-        'nickname', 
-        'billing_currency', 
-        'rfc_tax_id', 
-        'street_address', 
-        'building_number', 
-        'neighborhood', 
-        'city', 
-        'state', 
-        'postal_code', 
-        'country', 
-        'phone', 
-        'website', 
-        'email', 
-        'credit_days', 
-        'credit_expiration_date', 
-        'free_loading_unloading_hours', 
+        'type',
+        'company',
+        'nickname',
+        'billing_currency',
+        'rfc_tax_id',
+        'street_address',
+        'building_number',
+        'neighborhood',
+        'city',
+        'state',
+        'postal_code',
+        'country',
+        'phone',
+        'website',
+        'email',
+        'credit_days',
+        'credit_expiration_date',
+        'free_loading_unloading_hours',
         'factory_company_id',
-        'notes', 
-        'add_document', 
-        'document_expiration_date', 
-        'picture', 
+        'notes',
+        'add_document',
+        'document_expiration_date',
+        'picture',
         'tarifario'
     ];
 
@@ -41,8 +41,8 @@ class BusinessDirectory extends Model
     {
         return static::where('type', $type); // Devuelve un Builder
     }
-    
-    
+
+
     public function contacts()
     {
         return $this->hasMany(Contact::class, 'directory_entry_id');
@@ -51,5 +51,19 @@ class BusinessDirectory extends Model
     public function supplier()
     {
         return $this->hasOne(Supplier::class, 'directory_entry_id');
+    }
+
+    public function getAllAttributes()
+    {
+        $columns = $this->getFillable();
+        $attributes = $this->getAttributes();
+        foreach ($columns as $column)
+        {
+            if (!array_key_exists($column, $attributes))
+            {
+                $attributes[$column] = null;
+            }
+        }
+        return $attributes;
     }
 }
